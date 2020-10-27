@@ -5,6 +5,10 @@ export default {
    ** Doc: https://vue-meta.nuxtjs.org/api/#metainfo-properties
    */
   head: {
+    htmlAttrs: {
+      lang: "ja",
+      prefix: "og: http://ogp.me/ns#"
+    },
     title: "推敲オンライン",
     meta: [
       { charset: "utf-8" },
@@ -12,8 +16,34 @@ export default {
       {
         hid: "description",
         name: "description",
-        content: "Official Nuxt.js starter for CodeSandBox"
-      }
+        content:
+          "推敲オンラインはカタチになる前のアイデアにアドバイスや意見を持ち寄り、カタチになるまでを応援するサイトです。"
+      },
+      {
+        hid: "og:site_name",
+        property: "og:site_name",
+        content: "推敲オンライン"
+      },
+      { hid: "og:type", property: "og:type", content: "website" },
+      {
+        hid: "og:url",
+        property: "og:url",
+        content: "https://suikoonline.netlify.app/"
+      },
+      { hid: "og:title", property: "og:title", content: "推敲オンライン" },
+      {
+        hid: "og:description",
+        property: "og:description",
+        content:
+          "推敲オンラインはカタチになる前のアイデアにアドバイスや意見を持ち寄り、カタチになるまでを応援するサイトです。"
+      },
+      {
+        hid: "og:image",
+        property: "og:image",
+        content:
+          "https://vectr.com/ninjin_umigame_/b2LrTvo4h.svg?width=640&height=480&select=b2LrTvo4hpage0"
+      },
+      { name: "twitter:card", content: "summary" }
     ],
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }]
   },
