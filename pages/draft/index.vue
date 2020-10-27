@@ -81,6 +81,7 @@ export default {
           tags: this.tags,
           summary: this.summary,
           status: "open",
+          timestamp: firebase.firestore.FieldValue.serverTimestamp(),
         })
         .then(() => {
           this.$router.push("/dashboard");
