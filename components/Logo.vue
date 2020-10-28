@@ -1,8 +1,5 @@
 <template>
-  <img
-    width="40%"
-    src="https://vectr.com/ninjin_umigame_/b2LrTvo4h.svg?width=640&height=480&select=b2LrTvo4hpage0"
-  />
+  <img src="~/assets/logo.svg" width="40%" />
 </template>
 
 <script>
