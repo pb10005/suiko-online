@@ -150,7 +150,7 @@ export default {
         .doc(this.$route.query.id)
         .collection("comments")
         .add({
-          from: this.currentUser.uid,
+          from: this.currentUser,
           content: this.comment,
           timestamp: firebase.firestore.FieldValue.serverTimestamp(),
         })
