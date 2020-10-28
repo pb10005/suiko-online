@@ -6,7 +6,9 @@
         <v-textarea label="本文" v-model="draft.content"></v-textarea>
       </v-card-text>
       <v-card-actions>
-        <v-btn @click="$router.push('/dashboard')" text>キャンセル</v-btn>
+        <v-btn @click="$router.push(`/draft?id=${$route.query.id}`)" text
+          >キャンセル</v-btn
+        >
         <v-btn
           :disabled="draft.title === '' || draft.content === ''"
           @click="save"
