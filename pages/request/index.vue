@@ -16,7 +16,10 @@
         <v-card class="grey lighten-4" flat>
           <v-card-title>{{ request.draft.title }}</v-card-title>
           <v-card-text>
-            <span class="multiline">{{ request.draft.content }}</span>
+            <span
+              class="multiline"
+              v-html="$md.render(request.draft.content)"
+            ></span>
           </v-card-text>
         </v-card>
       </v-card-text>

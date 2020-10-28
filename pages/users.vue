@@ -22,9 +22,6 @@
                 <v-list-item-title
                   v-text="item.data.screenName"
                 ></v-list-item-title>
-                <v-list-item-subtitle>
-                  <span>{{ item.data.username }}</span>
-                </v-list-item-subtitle>
               </v-list-item-content>
             </template>
           </v-list-item>

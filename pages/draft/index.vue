@@ -3,7 +3,10 @@
     <v-card flat v-if="!loading">
       <v-card-title>{{ draftRef.data().title }}</v-card-title>
       <v-card-text>
-        <span class="multiline">{{ draftRef.data().content }}</span>
+        <span
+          class="multiline"
+          v-html="$md.render(draftRef.data().content)"
+        ></span>
       </v-card-text>
       <v-card-actions>
         <v-btn @click="$router.push(`/draft/edit?id=${$route.query.id}`)" text

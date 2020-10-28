@@ -50,7 +50,7 @@ export default {
           timestamp: firebase.firestore.FieldValue.serverTimestamp(),
         })
         .then(() => {
-          this.$router.push("/dashboard");
+          this.$router.push(`/draft?id=${this.$route.query.id}`);
         });
     },
   },

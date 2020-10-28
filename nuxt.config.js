@@ -67,9 +67,13 @@ export default {
   modules: [
     // Doc: https://http.nuxtjs.org
     "@nuxt/http",
+    "@nuxtjs/markdownit",
     // TODO: Remove it if you want to eject from codeSandbox
     "./codesandbox"
   ],
+  markdownit: {
+    injected: true
+  },
 
   /*
    ** HTTP module configuration
