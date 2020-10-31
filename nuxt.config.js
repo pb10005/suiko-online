@@ -93,22 +93,25 @@ export default {
   },
 
   buildModules: ["@nuxtjs/vuetify", "@nuxtjs/pwa"],
-  /*
-   ** @nuxtjs/pwa Configuration
-   ** https://github.com/nuxt-community/pwa-module
-   */
-  manifest: {
-    name: "推敲オンライン",
-    lang: "ja",
-    short_name: "推敲オンライン",
-    title: "推敲オンライン",
-    "og:title": "推敲オンライン",
-    description:
-      "カタチになる前のアイデアにアドバイス意見をや意見を持ち寄り、カタチになるまでを応援するサイトです。",
-    "og:description":
-      "カタチになる前のアイデアにアドバイス意見をや意見を持ち寄り、カタチになるまでを応援するサイトです。",
-    theme_color: "#212121",
-    background_color: "#212121",
-    display: "standalone"
+  pwa: {
+    icon: false,
+    /*
+     ** @nuxtjs/pwa Configuration
+     ** https://github.com/nuxt-community/pwa-module
+     */
+    manifest: {
+      name: "推敲オンライン",
+      lang: "ja",
+      short_name: "推敲オンライン",
+      title: "推敲オンライン",
+      "og:title": "推敲オンライン",
+      description:
+        "カタチになる前のアイデアにアドバイス意見をや意見を持ち寄り、カタチになるまでを応援するサイトです。",
+      "og:description":
+        "カタチになる前のアイデアにアドバイス意見をや意見を持ち寄り、カタチになるまでを応援するサイトです。",
+      theme_color: "#212121",
+      background_color: "#212121",
+      display: "standalone"
+    }
   }
 };
