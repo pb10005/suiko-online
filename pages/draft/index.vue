@@ -165,7 +165,12 @@ export default {
       }
     },
     remove() {
-      db.collection("drafts").doc(this.$route.query.id).delete();
+      db.collection("drafts")
+        .doc(this.$route.query.id)
+        .delete()
+        .then(() => {
+          this.$router.push("/dashboard");
+        });
     },
   },
 };
