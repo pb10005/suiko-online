@@ -2,7 +2,7 @@
   "name": "draft",
   "version": "1.0.0",
   "description": "",
-  "author": "Nuxt.js Team",
+  "author": "pb10005s",
   "private": true,
   "scripts": {
     "dev": "MINIMAL=1 CSB=1 nuxt",
@@ -24,5 +24,8 @@
     "nuxt": "^2.12.2",
     "reqlim": "^0.0.0"
   },
-  "keywords": []
+  "keywords": [],
+  "devDependencies": {
+    "@nuxtjs/pwa": "^3.2.2"
+  }
 }

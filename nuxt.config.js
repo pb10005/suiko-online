@@ -93,5 +93,5 @@ export default {
     extend(config, ctx) {}
   },
 
-  buildModules: ["@nuxtjs/vuetify"]
+  buildModules: ["@nuxtjs/vuetify", "@nuxtjs/pwa"]
 };
