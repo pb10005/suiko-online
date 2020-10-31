@@ -30,6 +30,7 @@ export default {
                       },
                       screenName: "名称未設定",
                       bio: "",
+                      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
                     },
                     { merge: true }
                   )
