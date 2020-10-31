@@ -52,7 +52,7 @@
       </v-list>
     </v-navigation-drawer>
     <v-main class="blue-grey lighten-5">
-      <Nuxt />
+      <Nuxt :nuxt-child-key="$route.fullPath" />
     </v-main>
   </v-app>
 </template>

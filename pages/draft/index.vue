@@ -7,11 +7,19 @@
           class="multiline"
           v-html="$md.render(draftRef.data().content)"
         ></span>
+        <ul>
+          <li v-for="rev in revisions" :key="rev.id">
+            <v-btn text @click="$router.push(`/draft?id=${rev.id}`)">{{
+              rev.title
+            }}</v-btn>
+          </li>
+        </ul>
       </v-card-text>
       <v-card-actions>
         <v-btn @click="$router.push(`/draft/edit?id=${$route.query.id}`)" text
           >編集</v-btn
         >
+        <v-btn @click="createRevision" text>リビジョンを作成</v-btn>
         <v-btn @click="remove" text>削除</v-btn>
       </v-card-actions>
     </v-card>
@@ -56,6 +64,7 @@ export default {
     return {
       summary: "",
       tags: [],
+      revisions: [],
       draftRef: null,
       loading: true,
     };
@@ -66,16 +75,34 @@ export default {
     },
   },
   mounted() {
-    this.$store.dispatch("requests/fetchTags");
-    db.collection("drafts")
-      .doc(this.$route.query.id)
-      .get()
-      .then((doc) => {
-        this.draftRef = doc;
-        this.loading = false;
-      });
+    this.load();
   },
   methods: {
+    load() {
+      this.$store.dispatch("requests/fetchTags");
+      db.collection("drafts")
+        .doc(this.$route.query.id)
+        .get()
+        .then((doc) => {
+          this.draftRef = doc;
+          return db
+            .collection("drafts")
+            .where("derived_from", "==", doc.id)
+            .get();
+        })
+        .then((docs) => {
+          if (docs) {
+            this.revisions = [];
+            docs.forEach((rev) => {
+              this.revisions.push({
+                id: rev.id,
+                title: rev.data().title,
+              });
+            });
+          }
+          this.loading = false;
+        });
+    },
     request() {
       db.collection("requests")
         .add({
@@ -89,6 +116,53 @@ export default {
         .then(() => {
           this.$router.push("/dashboard");
         });
+    },
+    createRevision() {
+      const revNum = this.draftRef.data().revisionNum;
+      if (revNum) {
+        db.collection("drafts")
+          .add({
+            editor: firebase.auth().currentUser.uid,
+            title: this.draftRef.data().title + "_" + (revNum + 1),
+            content: this.draftRef.data().content,
+            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+            derived_from: this.$route.query.id,
+          })
+          .then((doc) => {
+            return db
+              .collection("drafts")
+              .doc(this.draftRef.id)
+              .set(
+                {
+                  revisionNum: revNum + 1,
+                },
+                { merge: true }
+              );
+          })
+          .then(() => {
+            this.load();
+          });
+      } else {
+        db.collection("drafts")
+          .add({
+            editor: firebase.auth().currentUser.uid,
+            title: this.draftRef.data().title + "_1",
+            content: this.draftRef.data().content,
+            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+            derived_from: this.$route.query.id,
+          })
+          .then((doc) => {
+            return db.collection("drafts").doc(this.draftRef.id).set(
+              {
+                revisionNum: 1,
+              },
+              { merge: true }
+            );
+          })
+          .then(() => {
+            this.load();
+          });
+      }
     },
     remove() {
       db.collection("drafts").doc(this.$route.query.id).delete();
