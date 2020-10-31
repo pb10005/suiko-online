@@ -66,27 +66,29 @@ export const actions = {
     return requestRef.get().then((doc) => {
       const id = doc.id;
       const request = doc.data();
-      request.draft.get().then((d) => {
-        db.collection("users")
-          .doc(request.from)
-          .get()
-          .then((u) => {
-            context.commit("setRequest", {
-              id: id,
-              from: {
-                id: u.id,
-                username: u.data().username,
-                screenName: u.data().screenName,
-                photoURL: u.data().photoURL,
-                theme: u.data().theme
-              },
-              summary: request.summary,
-              tags: request.tags,
-              status: request.status,
-              draft: d.data()
-            });
+      let draft = null;
+      request.draft
+        .get()
+        .then((d) => {
+          draft = d;
+          return db.collection("users").doc(request.from).get();
+        })
+        .then((u) => {
+          context.commit("setRequest", {
+            id: id,
+            from: {
+              id: u.id,
+              username: u.data().username,
+              screenName: u.data().screenName,
+              photoURL: u.data().photoURL,
+              theme: u.data().theme
+            },
+            summary: request.summary,
+            tags: request.tags,
+            status: request.status,
+            draft: draft.data()
           });
-      });
+        });
     });
   },
   fetchRequestComments(context, payload) {
