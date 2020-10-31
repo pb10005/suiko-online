@@ -28,7 +28,7 @@ export default {
       {
         hid: "og:url",
         property: "og:url",
-        content: "https://suikoonline.netlify.app/"
+        content: "https://suiko.online/"
       },
       { hid: "og:title", property: "og:title", content: "推敲オンライン" },
       {
@@ -40,8 +40,7 @@ export default {
       {
         hid: "og:image",
         property: "og:image",
-        content:
-          "https://vectr.com/ninjin_umigame_/b2LrTvo4h.svg?width=640&height=480&select=b2LrTvo4hpage0"
+        content: "https://suiko.online/_nuxt/img/a60aa03.svg"
       },
       { name: "twitter:card", content: "summary" }
     ],
@@ -93,5 +92,23 @@ export default {
     extend(config, ctx) {}
   },
 
-  buildModules: ["@nuxtjs/vuetify", "@nuxtjs/pwa"]
+  buildModules: ["@nuxtjs/vuetify", "@nuxtjs/pwa"],
+  /*
+   ** @nuxtjs/pwa Configuration
+   ** https://github.com/nuxt-community/pwa-module
+   */
+  manifest: {
+    name: "推敲オンライン",
+    lang: "ja",
+    short_name: "推敲オンライン",
+    title: "推敲オンライン",
+    "og:title": "推敲オンライン",
+    description:
+      "カタチになる前のアイデアにアドバイス意見をや意見を持ち寄り、カタチになるまでを応援するサイトです。",
+    "og:description":
+      "カタチになる前のアイデアにアドバイス意見をや意見を持ち寄り、カタチになるまでを応援するサイトです。",
+    theme_color: "#212121",
+    background_color: "#212121",
+    display: "standalone"
+  }
 };
