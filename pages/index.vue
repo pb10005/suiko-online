@@ -10,7 +10,9 @@
         </p>
       </v-card-text>
       <v-card-actions class="justify-center">
-        <v-btn outlined large @click="$router.push('/login')">ログイン</v-btn>
+        <v-btn outlined large @click="$router.push('/login')"
+          >ログイン・新規登録</v-btn
+        >
         <v-btn outlined large @click="$router.push('/requests')"
           >推敲依頼一覧</v-btn
         >
