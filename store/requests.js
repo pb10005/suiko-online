@@ -86,7 +86,8 @@ export const actions = {
             summary: request.summary,
             tags: request.tags,
             status: request.status,
-            draft: draft.data()
+            draft: draft.data(),
+            draftId: draft.id
           });
         });
     });

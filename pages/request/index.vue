@@ -21,6 +21,11 @@
               v-html="$md.render(request.draft.content)"
             ></span>
           </v-card-text>
+          <v-card-actions v-if="isAuthor">
+            <v-btn text @click="$router.push(`/draft?id=${request.draftId}`)"
+              >叩き台へ</v-btn
+            >
+          </v-card-actions>
         </v-card>
       </v-card-text>
       <v-card-actions v-if="isAuthor & (request.status === 'open')">
