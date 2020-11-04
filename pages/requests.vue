@@ -74,8 +74,8 @@ export default {
     firebase.auth().onAuthStateChanged((user) => {
       if (user.uid) {
         this.loggedIn = true;
-        this.$store.dispatch("requests/fetchRequests");
       }
+      this.$store.dispatch("requests/fetchRequests");
     });
   },
 };
