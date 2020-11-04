@@ -1,4 +1,6 @@
 import firebase from "~/plugins/firebase";
+import "firebase/firestore";
+
 const db = firebase.firestore();
 export default function ({ store, route, redirect }) {
   return new Promise((resolve) => {
